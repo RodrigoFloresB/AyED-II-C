@@ -73,6 +73,7 @@ int main(void) {
     {
         printf("Minimo en la posicion %d ", result.where);
     }
+    
     if ((result.is_upperbound == false) && (result.is_lowerbound == false))
     {
         printf("Nada nadita");
