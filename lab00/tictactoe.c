@@ -40,9 +40,21 @@ char get_winner(char board[3][3])
 bool has_free_cell(char board[3][3])
 {
     bool free_cell=false;
-    //
-    // TODO: COMPLETAR
-    //
+    
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; i < 3; i++)
+        {
+            if (board[i][j] == '-')
+            {
+                free_cell = true;
+            }
+            
+        }
+        
+        
+    }
+    
     return free_cell;
 }
 
