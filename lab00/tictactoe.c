@@ -31,15 +31,22 @@ void print_board(char board[3][3])
 char get_winner(char board[3][3])
 {
     char winner = '-';
-    int contadorWin;
-
-    for (int i = 1; i < 4; i++)
+    
+    for (int i = 0; i < 3; i++)
     {
-        if ()
+        if ((board[i][0] == board[i][1]) && (board[i][1] == board[i][2]))
         {
-            /* code */
+            winner = board[i][0];
         }
-        
+        if ((board[0][i] == board[1][i]) && (board[1][i] == board[2][i]))
+        {
+            winner = board[0][i];
+        }
+        if ((board[0][0] == board[1][1]) && (board[1][1] == board[2][2]) || (board[0][2] == board[1][1]) && (board[1][1] == board[2][0]) )
+        {
+            winner = board[1][1];
+        }
+    
     }
     
     return winner;
@@ -49,9 +56,9 @@ bool has_free_cell(char board[3][3])
 {
     bool free_cell=false;
     
-    for (int i = 1; i < 4; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for (int j = 1; j < 4; j++)
+        for (int j = 0; j < 3; j++)
         {
             if (board[i][j] == '-')
             {
