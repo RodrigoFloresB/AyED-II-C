@@ -102,7 +102,8 @@ int main(void)
             if (board[row][colum] == '-') {
                 board[row][colum] = turn;
                 turn = turn == 'X' ? 'O' : 'X';
-                winner = get_winner(board);
+                winner = get_winner(board); 
+                /* Existe un error al momento de elegir al ganador*/
             } else {
                 printf("\nCelda ocupada!\n");
             }
