@@ -2,6 +2,9 @@
 #include <stdio.h>   /* printf(), scanf()     */
 #include <stdbool.h> /* Tipo bool             */
 
+#define VERDE_T "\x1b[32m"
+#define RESET_COLOR "\x1b[0m" /* Color para Texto */
+
 #include <assert.h>  /* assert() */
 
 #define CELL_MAX (3 * 3 - 1)
@@ -73,7 +76,7 @@ bool has_free_cell(char board[3][3])
 
 int main(void)
 {
-    printf("Ta Te Ti\n");
+    printf(VERDE_T "\t Ta Te Ti\n");
 
     char board[3][3] = {
         { '-', '-', '-' },
@@ -86,11 +89,11 @@ int main(void)
     int cell = 0;
     while (winner == '-' && has_free_cell(board)) {
         print_board(board);
-        printf("\nTurno %c - Elija posición (número del 0 al %d): ", turn,
+        printf("\nTurno %c - Elija posición (numero del 0 al %d): ", turn,
                CELL_MAX);
         int scanf_result = scanf("%d", &cell);
         if (scanf_result <= 0) {
-            printf("Error al leer un número desde teclado\n");
+            printf("Error al leer un numero desde teclado\n");
             exit(EXIT_FAILURE);
         }
         if (cell >= 0 && cell <= CELL_MAX) {
@@ -104,14 +107,16 @@ int main(void)
                 printf("\nCelda ocupada!\n");
             }
         } else {
-            printf("\nCelda inválida!\n");
+            printf("\nCelda invalida!\n");
         }
     }
     print_board(board);
     if (winner == '-') {
         printf("Empate!\n");
     } else {
-        printf(" El ganador es : %c\n", winner);
+        printf("\n \t El ganador es : %c \n", winner);
     }
+        printf(RESET_COLOR);
+        
     return 0;
 }
