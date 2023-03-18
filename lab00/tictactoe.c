@@ -31,9 +31,17 @@ void print_board(char board[3][3])
 char get_winner(char board[3][3])
 {
     char winner = '-';
-    //
-    // TODO: COMPLETAR
-    //
+    int contadorWin;
+
+    for (int i = 1; i < 4; i++)
+    {
+        if ()
+        {
+            /* code */
+        }
+        
+    }
+    
     return winner;
 }
 
@@ -41,9 +49,9 @@ bool has_free_cell(char board[3][3])
 {
     bool free_cell=false;
     
-    for (int i = 0; i < 3; i++)
+    for (int i = 1; i < 4; i++)
     {
-        for (int j = 0; i < 3; i++)
+        for (int j = 1; j < 4; j++)
         {
             if (board[i][j] == '-')
             {
@@ -51,8 +59,6 @@ bool has_free_cell(char board[3][3])
             }
             
         }
-        
-        
     }
     
     return free_cell;
@@ -60,7 +66,7 @@ bool has_free_cell(char board[3][3])
 
 int main(void)
 {
-    printf("TicTacToe [InCoMpLeTo :'(]\n");
+    printf("Ta Te Ti\n");
 
     char board[3][3] = {
         { '-', '-', '-' },
