@@ -34,15 +34,15 @@ char get_winner(char board[3][3])
     
     for (int i = 0; i < 3; i++)
     {
-        if ((board[i][0] == board[i][1]) && (board[i][1] == board[i][2]))
+        if ((board[i][0] == board[i][1]) && (board[i][1] == board[i][2])) /* Filas */
         {
             winner = board[i][0];
         }
-        if ((board[0][i] == board[1][i]) && (board[1][i] == board[2][i]))
+        if ((board[0][i] == board[1][i]) && (board[1][i] == board[2][i])) /* Columnas */
         {
             winner = board[0][i];
         }
-        if ((board[0][0] == board[1][1]) && (board[1][1] == board[2][2]) || (board[0][2] == board[1][1]) && (board[1][1] == board[2][0]) )
+        if (((board[0][0] == board[1][1]) && (board[1][1] == board[2][2])) || ((board[0][2] == board[1][1]) && (board[1][1] == board[2][0]))) /* Diagonales */
         {
             winner = board[1][1];
         }
@@ -111,7 +111,7 @@ int main(void)
     if (winner == '-') {
         printf("Empate!\n");
     } else {
-        printf("Ganó %c\n", winner);
+        printf(" El ganador es : %c\n", winner);
     }
     return 0;
 }
