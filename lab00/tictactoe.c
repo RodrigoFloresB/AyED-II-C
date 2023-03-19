@@ -40,14 +40,17 @@ char get_winner(char board[3][3])
         if ((board[i][0] == board[i][1]) && (board[i][1] == board[i][2])) /* Filas */
         {
             winner = board[i][0];
+            break;
         }
         if ((board[0][i] == board[1][i]) && (board[1][i] == board[2][i])) /* Columnas */
         {
             winner = board[0][i];
+            break;
         }
         if (((board[0][0] == board[1][1]) && (board[1][1] == board[2][2])) || ((board[0][2] == board[1][1]) && (board[1][1] == board[2][0]))) /* Diagonales */
         {
             winner = board[1][1];
+            break;
         }
     
     }
