@@ -7,7 +7,8 @@
 
 #include <assert.h>  /* assert() */
 
-#define CELL_MAX (3 * 3 - 1)
+int t = 4; /* Tamaño del tablero t x t */
+#define CELL_MAX (t*t - 1 )
 
 void print_sep(int length) {
     printf("\t ");
@@ -15,37 +16,87 @@ void print_sep(int length) {
     printf("\n");
 
 }
-+ ++
-void print_board(char board[3][3])
+
+void print_board(char board[t][t])
 {
     int cell = 0;
 
-    print_sep(3);
-    for (int row = 0; row < 3; ++row) {
-        for (int column = 0; column < 3; ++column) {
+    print_sep(t);
+    for (int row = 0; row < t; ++row) {
+        for (int column = 0; column < t; ++column) {
             printf("\t | %d: %c ", cell, board[row][column]);
             ++cell;
         }
         printf("\t | \n");
-        print_sep(3);
+        print_sep(t);
     }
 }
 
-char get_winner(char board[3][3])
+char get_winner(char board[t][t])
 {
     char winner = '-';
-    
-    
+    bool res_winner = true;
+
+    for (int i = 0; i < t; i++)
+    {
+        /* Filas */
+        for (int j = 1; j < t; j++)
+        {
+            res_winner = res_winner && (board[i][0] == board[i][j]);
+        }
+        if (res_winner)
+        {
+            winner = board[i][0];
+            break;
+        }
+        
+        res_winner = true; /* Reset Var*/
+
+        /* Columnas */
+        for (int j = 1; j < t; j++)
+        {
+            res_winner = res_winner && (board[0][i] == board[j][i]);
+        }
+        if (res_winner)
+        {
+            winner = board[0][i];
+            break;
+        }
+    }
+
+    res_winner = true; /* Reset Var*/
+
+    /* Diagonales */
+    for (int i = 1, j = 1; i < t && j < t; i++ , j++)
+    {
+        res_winner = res_winner && (board[0][0] == board[i][j]);  
+    }
+    if (res_winner)
+    {
+        winner = board[0][0];
+    }
+
+    res_winner = true; /* Reset Var*/
+
+    for (int i = 1,j = t-1; i < t; i++ , j--)
+    {
+        res_winner = res_winner && (board[i][0] == board[0][j]);
+    }
+    if (res_winner)
+    {
+        winner = board[0][t-1];
+    }
+
     return winner;
 }
 
-bool has_free_cell(char board[3][3])
+bool has_free_cell(char board[t][t])
 {
     bool free_cell=false;
     
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < t; i++)
     {
-        for (int j = 0; j < 3; j++) // Voy a necesitar cambier el j < 3 por un j < n.
+        for (int j = 0; j < t; j++)
         {
             if (board[i][j] == '-')
             {
@@ -62,32 +113,36 @@ int main(void)
 {
     printf(VERDE_T "\t Ta Te Ti\n");
 
-    char board[3][3] = {
-        { '-', '-', '-' },
-        { '-', '-', '-' },
-        { '-', '-', '-' }
+    /* 
+    Aun tengo que resolver este apartado para
+    poder darle un tamaño t x t 
+    */
+    char board[4][4] = {
+        { '-', '-', '-' , '-'},
+        { '-', '-', '-' , '-'},
+        { '-', '-', '-' , '-'},
+        { '-', '-', '-' , '-'}
     };
 
     char turn = 'X';
     char winner = '-';
     int cell = 0;
+    
     while (winner == '-' && has_free_cell(board)) {
         print_board(board);
-        printf("\nTurno %c - Elija posición (numero del 0 al %d): ", turn,
-               CELL_MAX);
+        printf("\nTurno %c - Elija posición (numero del 0 al %d): ", turn, CELL_MAX);
         int scanf_result = scanf("%d", &cell);
         if (scanf_result <= 0) {
             printf("Error al leer un numero desde teclado\n");
             exit(EXIT_FAILURE);
         }
         if (cell >= 0 && cell <= CELL_MAX) {
-            int row = cell / 3;
-            int colum = cell % 3;
+            int row = cell / t;
+            int colum = cell % t;
             if (board[row][colum] == '-') {
                 board[row][colum] = turn;
                 turn = turn == 'X' ? 'O' : 'X';
                 winner = get_winner(board); 
-                /* Existe un error al momento de elegir al ganador*/
             } else {
                 printf("\nCelda ocupada!\n");
             }
