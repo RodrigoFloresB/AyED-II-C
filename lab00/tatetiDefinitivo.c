@@ -4,7 +4,7 @@
 
 #define VERDE_T "\x1b[32m"
 #define RESET_COLOR "\x1b[0m" /* Color para Texto */
-/* Holaa */
+
 #include <assert.h>  /* assert() */
 
 int t = 4; /* Tamaño del tablero t x t */
