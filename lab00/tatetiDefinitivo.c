@@ -78,14 +78,15 @@ char get_winner(char board[t][t])
 
     res_winner = true; /* Reset Var*/
 
-    for (int i = 1,j = t-1; i < t; i++ , j--)
+    /* Error, no compara bien */
+    for (int i = 0, j = t-1; i < t; i++ , j--)
     {
-        res_winner = res_winner && (board[i][0] == board[0][j]);
+        res_winner = res_winner && (board[j][i] == board[t-1][0]);
     }
     if (res_winner)
     {
         winner = board[0][t-1];
-    }
+    } 
 
     return winner;
 }
@@ -130,7 +131,7 @@ int main(void)
     
     while (winner == '-' && has_free_cell(board)) {
         print_board(board);
-        printf("\nTurno %c - Elija posición (numero del 0 al %d): ", turn, CELL_MAX);
+        printf("\nTurno %c - Elija posición (numero del 0 al %d): \n", turn, CELL_MAX);
         int scanf_result = scanf("%d", &cell);
         if (scanf_result <= 0) {
             printf("Error al leer un numero desde teclado\n");
