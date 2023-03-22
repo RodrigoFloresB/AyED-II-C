@@ -78,7 +78,6 @@ char get_winner(char board[t][t])
 
     res_winner = true; /* Reset Var*/
 
-    /* Error, no compara bien */
     for (int i = 0, j = t-1; i < t; i++ , j--)
     {
         res_winner = res_winner && (board[j][i] == board[t-1][0]);
