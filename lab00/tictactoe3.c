@@ -130,7 +130,7 @@ int main(void)
     
     while (winner == '-' && has_free_cell(board)) {
         print_board(board);
-        printf("\nTurno %c - Elija posición (numero del 0 al %d): \n", turn, CELL_MAX);
+        printf("\nTurno %c - Elija posición (numero del 0 al %d): ", turn, CELL_MAX);
         int scanf_result = scanf("%d", &cell);
         if (scanf_result <= 0) {
             printf("Error al leer un numero desde teclado\n");
