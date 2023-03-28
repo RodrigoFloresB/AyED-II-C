@@ -45,10 +45,37 @@ unsigned int array_from_file(int array[],
                              unsigned int max_size,
                              const char *filepath) {
     //your code here!!!
-}
+    int length;
+    FILE * f;
+    f=fopen(filepath , "r");
+    if (f == NULL)
+    {
+        printf("Error al leer el fichero \n");
+    } else {
+        fscanf(f , "%u" , &max_size);
 
+        length = max_size;
+        
+        for (int i = 0; i < length; i++)
+        {
+            fscanf(f , "%d", &array[i]);
+        }
+        
+    }
+    
+    fclose(f);
+
+    return length;
+}
+    
 void array_dump(int a[], unsigned int length) {
     //your code here!!!
+    int lengthAux = length;
+
+    for (int i = 0; i < lengthAux; i++)
+    {
+        printf("%d", a[i]);
+    }
 }
 
 
