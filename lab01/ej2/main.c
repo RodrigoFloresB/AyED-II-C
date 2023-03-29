@@ -41,35 +41,30 @@ char *parse_filepath(int argc, char *argv[]) {
     return result;
 }
 
-unsigned int array_from_file(
-    int array[],
-    unsigned int max_size,
-    const char *filepath
+unsigned int array_from_stdin(
+    int array[], 
+    unsigned int max_size
     ){
-        
+    FILE * f=stdin;
     unsigned int length;
-    FILE * f;
-    f=fopen(filepath , "r");
-    if (f == NULL)
+
+    printf("Ingresar el tamaño del array : ");
+    fscanf(f,"%u", &length);
+    fflush(stdin);
+    
+    if ((length > max_size) && (length >= 1))
     {
-        printf("Error al leer el fichero \n");
         exit(EXIT_FAILURE);
     }
     
-    fscanf(f , "%u" , &length);
-
-    if (length > max_size)
-    {
-        exit(EXIT_FAILURE);
-    } 
-        
     for (unsigned int i = 0; i < length; i++)
     {
-       fscanf(f , "%d", &array[i]);
+        printf("Valor en la posicion %u : ",i);
+        fscanf(f, "%d", &array[i]);
+        fflush(stdin);
+
     }
     
-    fclose(f);
-
     return length;
 }
     
@@ -92,17 +87,11 @@ void array_dump(int a[], unsigned int length) {
     printf("] \n");
 }
 
-int main(int argc, char *argv[]) {
-    char *filepath = NULL;
-
-    /* parse the filepath given in command line arguments */
-    filepath = parse_filepath(argc, argv);
-    
-    /* create an array of MAX_SIZE elements */
+int main() {
     int array[MAX_SIZE];
     
     /* parse the file to fill the array and obtain the actual length */
-    unsigned int length = array_from_file(array, MAX_SIZE, filepath);
+    unsigned int length = array_from_stdin(array, MAX_SIZE);
     
     /*dumping the array*/
     array_dump(array, length);
