@@ -26,11 +26,12 @@ int main(void) {
             if (fstring_eq(words[i], words[j])) {
                 printf("Los strings '%s' y '%s' son iguales\n",
                         words[i], words[j]);
-            }
+            } else {
             printf("El string '%s' va %s alfabeticamente que '%s'\n\n", 
                    words[i],
                    fstring_less_eq(words[i], words[j]) ? "antes": "despues",
                    words[j]);
+            }
         }
     }
     return EXIT_SUCCESS;
