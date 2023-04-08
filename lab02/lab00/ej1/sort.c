@@ -8,23 +8,15 @@
 
 
 static void insert(int a[], unsigned int i) {
-    for (unsigned int j = i; j > 0; j--)
+    for (unsigned int j=i ; j>0 && goes_before(a[j], a[j-1]) ; j--)
     {
-        if (goes_before(a[j], a[j-1]))
-        {
-            int swapA = a[j];
-            int swapB = a[j-1];
-
-            a[j] = swapB;
-            a[j-1] = swapA;
-
-        }
+            swap(a,j-1,j);
     }
 }
 
 void insertion_sort(int a[], unsigned int length) {
     for (unsigned int i = 1u; i < length; ++i) {
-        insert(a, length);
+        insert(a, i);
+        assert(array_is_sorted(a,i));
     }
-       // assert(array_is_sorted(a,length));
 }
