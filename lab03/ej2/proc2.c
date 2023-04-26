@@ -13,8 +13,10 @@ int main(void) {
     int *y = NULL;
     a = -10;
 
-    y = &res;
+    y = &res; 
+    /* El puntero apunto a res */
     absolute(a, y);
+    /* Luego de ejecutar absolute res aloja el |a| */
 
     printf("absolute = %d \n", res);
 
