@@ -2,9 +2,13 @@
 #include <stdio.h>
 
 void absolute(int x, int *y) {
-    y = &x;
-    if(x<0){
-        x = -x;
+    if (x >= 0)
+    {
+        y = &x;
+        *y = x;
+    } else {
+        y = &x;
+        *y = -x;
     }
 }
 
