@@ -12,6 +12,19 @@ static void dump(char a[], unsigned int length) {
     printf("\n\n");
 }
 
+unsigned int data_from_file(
+    const char *path,
+    unsigned int indexes[],
+    schar letters[],
+    unsigned int max_size
+    ){
+    
+
+
+    
+}
+
+
 int main(/* -- completar-- */) {
     FILE *file;
     unsigned int indexes[MAX_SIZE];
