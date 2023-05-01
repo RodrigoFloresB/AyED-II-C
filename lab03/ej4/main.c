@@ -11,6 +11,8 @@
 /* Then, this project's includes, alphabetically ordered */
 #include "array_helpers.h"
 
+#include "weather_utils.h"
+
 /**
  * @brief print usage help
  * @param[in] program_name Executable name
@@ -72,6 +74,32 @@ int main(int argc, char *argv[]) {
 
     /* show the ordered array in the screen */
     array_dump(array);
+
+    printf("\n ------------------------------ \n");
+
+    int minTemp = min_temp_hist(array);
+    printf(" La menor temperatura historica fue : %d \n", minTemp);
+
+    printf("\n ------------------------------ \n");
+
+    int a[YEARS];
+
+    max_temp_year(array, a);
+
+    for (unsigned int year = FST_YEAR ; year < LST_YEAR; year++)
+    {
+        printf("La mayor temp en %u fue : %d \n",year, a[year]);
+    }
+
+    printf("\n ------------------------------ \n");
+    
+    unsigned int p[YEARS];
+    max_pres_month(array, p);
+
+    for (unsigned int year = FST_YEAR ; year < LST_YEAR; year++)
+    {
+        printf("Mes con mas prec del %u fue : %d \n",year, p[year]);
+    }
 
     return (EXIT_SUCCESS);
 }
