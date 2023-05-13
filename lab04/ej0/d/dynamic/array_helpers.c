@@ -37,7 +37,7 @@ int * array_from_file(const char *filepath, size_t *length) {
     
     *length = size;
 
-    array = (int*) malloc(sizeof(int) * size);
+    array = malloc(sizeof(int) * size);
 
     if (size > 0 && array == NULL) {
         fprintf(stderr, "Not enough memory\n");

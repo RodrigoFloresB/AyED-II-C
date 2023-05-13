@@ -2,9 +2,14 @@
 #include <stdio.h>   /* printf()...     */
 #include "pair.h"    /* TAD Par         */
 
+struct s_pair_t {
+    int fst;
+    int snd;
+};
+
 static
 void show_pair(pair_t p) {
-    printf("(%d, %d)\n", pair_first(p), pair_second(p));
+    printf("(%d, %d)\n", p->fst, p->snd);
 }
 
 int main(void) {

@@ -14,6 +14,7 @@ void set_name(name_t new_name, data_t *d) {
 
     int i = 0;
 
+    
     while (new_name[i] != '\0')
     {
         d->name[i] = new_name[i];
