@@ -38,7 +38,7 @@ char *parse_filepath(int argc, char *argv[]) {
 }
 
 bool matching_parentheses(FILE * file) {
-    counter c = NULL;
+    counter c = counter_init();
     bool balanced = true;
     char letter;
 
@@ -52,6 +52,7 @@ bool matching_parentheses(FILE * file) {
             counter_dec(c);
         }
     }
+    
     return (balanced && counter_is_init(c));
 }
 
