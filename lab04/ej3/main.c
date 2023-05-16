@@ -36,19 +36,41 @@ float average(list l) {
 /*
     Needs implementation.
 */
+    float elem, res;
+    list aux = l;
+    res = 0.0;
+
+    while (!is_empty(aux))
+    {
+        elem = head(aux);
+        res = res + elem;
+        aux = tail(aux);
+    }
+
+    free(aux);
+
+    res = res / (length(l));
+
+    return res;  
 }
 
 list array_to_list(int array[], unsigned int length) {
-    /* Initialize the list */
+    list l = empty();
+    int elem;
+
     for (unsigned int i = 0u; i < length; ++i) {
         /* Add element to the list  */
+        elem = array[i];
+        l = addr(l,elem);
     }
     /* Return list */
+
+    return l;
 }
 
 int main(int argc, char *argv[]) {
     char *filepath = NULL;
-    FILE *file = NULL;
+    //FILE *file = NULL;
 
     /* parse the filepath given in command line arguments */
     filepath = parse_filepath(argc, argv);
