@@ -42,26 +42,43 @@ char *parse_filepath(int argc, char *argv[]) {
 }
 
 int main(int argc, char *argv[]) {
-  char *filepath = NULL;
+    char *filepath = NULL;
 
-  /* parse the filepath given in command line arguments */
-  filepath = parse_filepath(argc, argv);
+    /* parse the filepath given in command line arguments */
+    filepath = parse_filepath(argc, argv);
 
-  /* create an array of MAX_SIZE elements */
-  int array[MAX_SIZE];
+    /* create an array of MAX_SIZE elements */
+    int array[MAX_SIZE];
 
-  /* parse the file to fill the array and obtain the actual length */
-  unsigned int length = array_from_file(array, MAX_SIZE, filepath);
-  printf("Original: ");
-  array_dump(array, length);
+    /* parse the file to fill the array and obtain the actual length */
+    unsigned int length = array_from_file(array, MAX_SIZE, filepath);
+    
+    /* 
+        Correcion para que no de un mal resultado al momento de que 
+        el arreglo sea vacio.
+    */
+   
+    if (length == 0)
+    {
+        printf("Error, el arreglo es vacio.\n");
+        exit(EXIT_FAILURE);
+    }
+    
+    printf("Original: ");
+    array_dump(array, length);
 
-  int *new_array=NULL;
-  /**
-  *
-  *  --- COMPLETAR ----
-  *
-  */
-  printf("Reversed: ");
-  array_dump(new_array, length);
-  return (EXIT_SUCCESS);
+    int *new_array=NULL;
+
+    stack list = stack_empty();
+
+    for (unsigned int i = 0; i < length; i++)
+    {
+        list = stack_push(list, array[length - i - 1]);
+    }
+    
+    new_array = stack_to_array(list);
+
+    printf("Reversed: ");
+    array_dump(new_array, length);
+    return (EXIT_SUCCESS);
 }
