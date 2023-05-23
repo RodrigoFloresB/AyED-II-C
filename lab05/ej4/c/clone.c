@@ -2,13 +2,24 @@
 #include <stdio.h>
 #include <string.h>
 
+size_t string_length(const char *str){
+	size_t length = 0;
+
+	while (str[length] != '\0')
+	{
+		length++;
+	}
+	
+	return length;
+}
+
 char *string_clone(const char *str, size_t length) {
-    char clone[length + 1];
-    char *output=clone;
+    char *output=calloc(length + 1, sizeof(char));
+
     for (size_t i=0; i<length; i++) {
-        clone[i] = str[i];
+        output[i] = str[i];
     }
-    clone[length] = '\0';
+    output[length] = '\0';
     return output;
 }
 
@@ -44,7 +55,7 @@ int main(void) {
          "galaxy...\n";
     char *copy=NULL;
 
-    copy = string_clone(original, sizeof(original)/sizeof(char) - 1);
+    copy = string_clone(original, string_length(original) - 1);
     printf("Original: %s\n", original);
     copy[0] = 'A';
     copy[1] = ' ';
@@ -54,7 +65,7 @@ int main(void) {
     copy[5] = 'g';
     printf("Copia   : %s\n", copy);
 
-
+    free(copy);
 
     return EXIT_SUCCESS;
 }
