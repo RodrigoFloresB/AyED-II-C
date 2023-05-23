@@ -9,7 +9,7 @@ struct _s_stack {
 };
 
 stack stack_empty(){
-	stack empty = malloc(sizeof(stack));
+	stack empty = malloc(sizeof(struct _s_stack));
     empty->elems = malloc(sizeof(stack_elem));
     empty->capacity = 1;
     empty->size = 0;
