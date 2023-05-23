@@ -4,8 +4,13 @@
 #include <string.h>
 
 char *string_clone(const char *str) {
+    size_t length = strlen(str);
+
     char *clone=NULL;
-    /* COMPLETAR */
+    clone = calloc(length + 1, sizeof(char));
+    
+    strcpy(clone, str);
+
     return clone;
 }
 
@@ -51,6 +56,7 @@ int main(void) {
     copy[5] = 'g';
     printf("Copia   : %s\n", copy);
 
+    free(copy);
 
     return EXIT_SUCCESS;
 }
