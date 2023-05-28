@@ -60,6 +60,9 @@ int main(int argc, char *argv[]) {
     // 
     // COMPLETAR: Liberar la memoria usada por <q>
     //
+
+    q = queue_destroy(q);
+
     return EXIT_SUCCESS;
 }
 
