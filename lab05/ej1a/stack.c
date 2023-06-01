@@ -62,6 +62,7 @@ stack_elem *stack_to_array(stack s){
 
 	if (stack_is_empty(aux))
 	{
+		free(res);
 		res = NULL;
 	} else {
 		for (unsigned int  i = stack_size(aux); i > 0; i--)
